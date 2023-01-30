@@ -5,38 +5,34 @@
 
 Console.Clear();
 
-int[] GetArray (int size, int minValue, int maxValue)
+int[] GetArray ()
 {
-    int[] array= new int[size];
+    System.Console.WriteLine("Введите количество элементов массива");
+    int length=int.Parse(Console.ReadLine()!);
+
+    System.Console.WriteLine("Введите минимальное значение элемента массива");
+    int min=int.Parse(Console.ReadLine()!);
+
+    System.Console.WriteLine("Введите максимальное значение элемента массива");
+    int max=int.Parse(Console.ReadLine()!);
+    int[] array= new int[length];
     for (int i=0; i<array.Length; i++)
     {
-        array[i]=new Random().Next(minValue, maxValue+1);
+        array[i]=new Random().Next(min, max+1);
     }
     return array;
 }
 
-System.Console.WriteLine("Введите количество элементов массива");
-int size=int.Parse(Console.ReadLine()!);
-
-System.Console.WriteLine("Введите минимальное значение элемента массива");
-int minValue=int.Parse(Console.ReadLine()!);
-
-System.Console.WriteLine("Введите максимальное значение элемента массива");
-int maxValue=int.Parse(Console.ReadLine()!);
-
-int[] numbers=GetArray(size, minValue, maxValue);
-Console.WriteLine(string.Join(", ", numbers));
-
-int[] newArray (int size)
+int[] newArray (int[] paramNumbers)
 {
-    var array = numbers.ToArray();
+    var array = paramNumbers.ToArray();
     for (int i = 0; i < array.Length; i++)
     {
-        
         array[i]*=-1;
     }
     return array;
 }
 
-numbers=newArray(size);
-Console.WriteLine(string.Join(", ", numbers));
+int[] numbers=GetArray();
+int[] result=newArray(numbers);
+Console.WriteLine($"Массив {string.Join(", ", numbers)} заменен массивом {string.Join(", ", result)}");
